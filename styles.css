@@ -156,23 +156,98 @@ li::before {
              margin-top:14px; background:rgba(255,255,255,.18); padding:10px 30px;
              border-radius:999px; border:1.5px solid rgba(255,255,255,.4); position:relative; }
 
+/* ---------- COMISARÍAS DE FAMILIA ---------- */
+.recursos {
+  position:relative; z-index:1; max-width:1240px;
+  margin:0 auto; padding:6px 24px 44px;
+}
+.section-head { text-align:center; margin-bottom:28px; }
+.section-kicker {
+  display:inline-block; background:#fff; color:#8e1f5a; font-weight:700;
+  font-size:.72rem; letter-spacing:2.5px; text-transform:uppercase;
+  padding:8px 18px; border-radius:999px;
+  box-shadow:0 6px 16px rgba(142,31,90,.15);
+}
+.section-head h2 {
+  font-size:clamp(1.7rem, 3.4vw, 2.3rem); font-weight:900; line-height:1.15;
+  margin:14px 0 10px;
+  background:linear-gradient(120deg,#8e1f5a 10%,#e75fa0 55%,#6d4fa0 90%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.section-head p { color:#8a6a7c; font-size:.96rem; line-height:1.55; max-width:660px; margin:0 auto; }
+
+.comisarias-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px;
+}
+.comisaria {
+  position:relative; background:#fff; border-radius:20px;
+  border-top:6px solid #e75fa0; padding:26px 22px 22px;
+  box-shadow:0 10px 28px rgba(142,31,90,.12);
+  transition:transform .3s ease, box-shadow .3s ease;
+  overflow:hidden;
+}
+.comisaria:nth-child(2) { border-top-color:#a06cd5; }
+.comisaria:nth-child(3) { border-top-color:#4a90c4; }
+.comisaria:nth-child(4) { border-top-color:#d98a3d; }
+.comisaria:nth-child(5) { border-top-color:#5aa88a; }
+.comisaria:hover { transform:translateY(-6px); box-shadow:0 18px 38px rgba(142,31,90,.20); }
+.comisaria-index {
+  position:absolute; top:14px; right:18px; line-height:1;
+  font-size:2.4rem; font-weight:900; color:#f7e3ee;
+}
+.comisaria h3 {
+  position:relative; padding-right:46px; margin-bottom:14px;
+  font-size:1.02rem; line-height:1.35; color:#5a2b45;
+}
+.comisaria-meta {
+  display:flex; gap:8px; margin-bottom:7px;
+  font-size:.88rem; line-height:1.45; color:#6a5060;
+}
+.comisaria-meta span:first-child { flex:0 0 auto; }
+.comisaria-mail {
+  display:inline-block; margin-top:10px; padding:7px 10px;
+  border-radius:9px; background:#fdf0f7;
+  font-size:.76rem; line-height:1.35; color:#8e1f5a; text-decoration:none;
+  overflow-wrap:anywhere; transition:background .25s ease;
+}
+.comisaria-mail:hover { background:#fbd9ea; }
+
+/* ---------- LÍNEA YO TE ESCUCHO ---------- */
+.linea-escucha {
+  position:relative; z-index:1; max-width:1240px;
+  margin:0 auto; padding:0 24px 46px;
+}
+.linea-inner {
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:26px; padding:32px 34px; border-radius:26px;
+  background:linear-gradient(135deg,#f7ecfb,#fde8f2);
+  border:1.5px solid #edd6e9;
+  box-shadow:0 12px 32px rgba(142,31,90,.10);
+}
+.linea-text { flex:1 1 320px; }
+.linea-text h2 { font-size:1.6rem; color:#6d2b57; margin:12px 0 8px; }
+.linea-text p { color:#7d5f70; font-size:.94rem; line-height:1.55; max-width:520px; }
+.phone-list {
+  flex:1 1 300px; display:flex; flex-wrap:wrap; gap:12px;
+  justify-content:flex-end;
+}
+.phone-pill {
+  display:flex; flex-direction:column; gap:3px; min-width:150px;
+  padding:13px 16px; border-radius:14px; background:#fff;
+  border:1.5px solid #f0dbe6; text-decoration:none;
+  box-shadow:0 6px 16px rgba(142,31,90,.14);
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.phone-pill:hover {
+  transform:translateY(-3px); border-color:#e75fa0;
+  box-shadow:0 12px 24px rgba(142,31,90,.22);
+}
+.phone-number { font-size:1.02rem; font-weight:900; letter-spacing:.4px; color:#8e1f5a; }
+.phone-label { font-size:.68rem; letter-spacing:1.2px; text-transform:uppercase; color:#9a7f8d; }
+
 footer { position:relative; z-index:1; text-align:center; padding:0 20px 46px;
          color:#a98a9a; font-size:.82rem; line-height:1.6; }
 footer .heart { color:#e75fa0; }
-
-/* ---------- ANIMACIÓN DE APARICIÓN (activada por script.js) ---------- */
-@keyframes cardIn {
-  from { opacity:0; transform:translateY(26px); }
-  to   { opacity:1; transform:none; }
-}
-.is-loaded .card,
-.is-loaded .final-banner {
-  animation:cardIn .7s ease backwards;
-}
-.is-loaded .card:nth-child(1) { animation-delay:.05s; }
-.is-loaded .card:nth-child(2) { animation-delay:.15s; }
-.is-loaded .card:nth-child(3) { animation-delay:.25s; }
-.is-loaded .final-banner { animation-delay:.35s; }
 
 @media (prefers-reduced-motion:reduce) {
   *, *::before, *::after { animation:none !important; transition:none !important; }
@@ -182,4 +257,7 @@ footer .heart { color:#e75fa0; }
   .hero { padding-top:54px; }
   .hero-logo { width:170px; border-radius:18px; }
   .big-phone { font-size:1.55rem; padding:10px 20px; }
+  .linea-inner { padding:26px 22px; }
+  .phone-list { justify-content:flex-start; }
+  .phone-pill { flex:1 1 100%; }
 }

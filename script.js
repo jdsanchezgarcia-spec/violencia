@@ -1,5 +1,5 @@
-// Aparición escalonada de las tarjetas al cargar la página.
-// Mejora progresiva: si este script no se ejecuta, todo el contenido sigue visible.
+// Punto de entrada para mejoras progresivas sobre la página.
+// El contenido es visible y funcional aunque este archivo no se cargue.
 (function () {
   'use strict';
 
