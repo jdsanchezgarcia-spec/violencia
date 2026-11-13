@@ -116,6 +116,26 @@ body {
 .card:nth-child(3) .badge { background:linear-gradient(135deg,#e0eef8,#cbe2f5); color:#1f4e79; border:1.5px solid #a3cbe8; }
 .num small { color:#9a7f8d; display:block; font-size:.8rem; margin-top:2px; }
 
+/* ---------- GRUPOS: NACIONALES / LOCALES ---------- */
+.num-group + .num-group { margin-top:22px; padding-top:18px; border-top:2px dashed #f3dbe7; }
+.num-group-title {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:.7rem; font-weight:800; letter-spacing:1.6px; text-transform:uppercase;
+  color:#8e1f5a; background:linear-gradient(135deg,#fdf0f7,#fbe1ef);
+  border:1.5px solid #f3b1d1; border-radius:999px;
+  padding:7px 14px; margin:2px 0 8px;
+}
+.num-group--local .num-group-title {
+  color:#1f4e79; background:linear-gradient(135deg,#eef6fd,#ddecfb);
+  border-color:#a9cfea;
+}
+a.num { text-decoration:none; color:inherit; border-radius:12px; transition:background .2s ease; }
+a.num:hover { background:rgba(231,95,160,.07); }
+a.num:focus-visible { outline:3px solid #e75fa0; outline-offset:2px; }
+.inline-link { color:#8e1f5a; font-weight:700;
+               text-decoration:underline; text-decoration-color:#e75fa0; text-underline-offset:3px; }
+.inline-link:hover { color:#b03a7d; }
+
 ul { list-style:none; }
 li { padding:10px 0 10px 34px; position:relative; font-size:.94rem; line-height:1.5;
      border-bottom:1.5px dashed #f0e4ec; }

@@ -33,21 +33,35 @@
 <main class="grid">
 
   <!-- INFOGRAFÍA 1 -->
-  <article class="card">
+  <article class="card" id="lineas-atencion">
     <div class="card-header">
       <div class="icon-wrap">📞</div>
       <h2>Líneas de Atención</h2>
-      <div class="sub">¿Necesitas ayuda? Gratuitos, nacionales y 24/7</div>
+      <div class="sub">¿Necesitas ayuda? Números nacionales y locales de Villavicencio</div>
       <svg class="wave" viewBox="0 0 400 26" preserveAspectRatio="none"><path d="M0,26 C80,6 160,0 240,10 C320,20 360,14 400,4 L400,26 Z" fill="#ffffff"/></svg>
     </div>
     <div class="card-body">
-      <div class="num"><div class="badge">155</div><div><strong>Violencia basada en género</strong><small>Orientación a mujeres víctimas · 24 h, todos los días</small></div></div>
-      <div class="num"><div class="badge">122</div><div><strong>Fiscalía General</strong><small>Denuncias VBG y violencia sexual · 24/7</small></div></div>
-      <div class="num"><div class="badge">123</div><div><strong>Emergencias</strong><small>Línea única · Policía Nacional</small></div></div>
-      <div class="num"><div class="badge">141</div><div><strong>ICBF</strong><small>Protección de niños, niñas y adolescentes</small></div></div>
-      <div class="num"><div class="badge">01 8000<br>919 748</div><div><strong>Fiscalía</strong><small>Línea gratuita nacional</small></div></div>
-      <div class="num"><div class="badge">01 8000<br>918 080</div><div><strong>ICBF</strong><small>Línea gratuita nacional</small></div></div>
-      <div class="alert">💻 <strong>Denuncia en línea:</strong> www.fiscalia.gov.co<br>📱 WhatsApp ICBF: 320 239 1685 · 320 865 5450 · 320 239 1320</div>
+
+      <!-- NACIONALES -->
+      <div class="num-group num-group--nacional">
+        <h3 class="num-group-title"><span aria-hidden="true">🌐</span> Nacionales</h3>
+        <a class="num" href="tel:155" target="_self"><div class="badge">155</div><div><strong>Violencia basada en género</strong><small>Orientación a mujeres víctimas · 24 h, todos los días</small></div></a>
+        <a class="num" href="tel:122" target="_self"><div class="badge">122</div><div><strong>Fiscalía General</strong><small>Denuncias VBG y violencia sexual · 24/7</small></div></a>
+        <a class="num" href="tel:123" target="_self"><div class="badge">123</div><div><strong>Emergencias</strong><small>Línea única · Policía Nacional</small></div></a>
+        <a class="num" href="tel:141" target="_self"><div class="badge">141</div><div><strong>ICBF</strong><small>Protección de niños, niñas y adolescentes</small></div></a>
+        <a class="num" href="tel:018000919748" target="_self"><div class="badge">01 8000<br>919 748</div><div><strong>Fiscalía</strong><small>Línea gratuita nacional</small></div></a>
+        <a class="num" href="tel:018000918080" target="_self"><div class="badge">01 8000<br>918 080</div><div><strong>ICBF</strong><small>Línea gratuita nacional</small></div></a>
+        <div class="alert">💻 <strong>Denuncia en línea:</strong> www.fiscalia.gov.co<br>📱 WhatsApp ICBF: 320 239 1685 · 320 865 5450 · 320 239 1320</div>
+      </div>
+
+      <!-- LOCALES VILLAVICENCIO -->
+      <div class="num-group num-group--local">
+        <h3 class="num-group-title"><span aria-hidden="true">📍</span> Locales · Villavicencio</h3>
+        <a class="num" href="tel:018000931089" target="_self"><div class="badge">01 8000<br>931 089</div><div><strong>Línea Yo Te Escucho</strong><small>Línea gratuita · Apoyo emocional</small></div></a>
+        <a class="num" href="tel:+573163907010" target="_self"><div class="badge">316 390<br>7010</div><div><strong>Línea Yo Te Escucho</strong><small>WhatsApp · Apoyo emocional</small></div></a>
+        <a class="num" href="tel:106" target="_self"><div class="badge">106</div><div><strong>Línea 106</strong><small>Apoyo emocional · Villavicencio</small></div></a>
+      </div>
+
     </div>
   </article>
 
@@ -153,21 +167,9 @@
     <div class="linea-text">
       <span class="section-kicker">Apoyo emocional</span>
       <h2 id="linea-title">💬 Línea Yo Te Escucho</h2>
-      <p>Si necesitas hablar con alguien, estas líneas están disponibles para escucharte y orientarte.</p>
-    </div>
-    <div class="phone-list">
-      <a class="phone-pill" href="tel:018000931089">
-        <span class="phone-number">01 8000 931 089</span>
-        <span class="phone-label">Línea gratuita</span>
-      </a>
-      <a class="phone-pill" href="tel:+573163907010">
-        <span class="phone-number">316 390 7010</span>
-        <span class="phone-label">WhatsApp</span>
-      </a>
-      <a class="phone-pill" href="tel:106">
-        <span class="phone-number">106</span>
-        <span class="phone-label">Línea 106</span>
-      </a>
+      <p>Si necesitas hablar con alguien, estas líneas están disponibles para escucharte y orientarte.
+         Las encuentras en la tarjeta <a class="inline-link" href="#lineas-atencion" target="_self">Líneas de Atención ↑</a>,
+         dentro del grupo <em>Locales · Villavicencio</em>.</p>
     </div>
   </div>
 </section>
