@@ -44,6 +44,13 @@ function nuevaHoja(nombre) {
           }
           return this;
         },
+        setValue(v) {
+          const f = fila - 1;
+          if (!self.valores[f]) self.valores[f] = [];
+          self.valores[f][col - 1] = v;
+          return this;
+        },
+        setNumberFormat() { return this; },
         setFontWeight() { return this; },
         setVerticalAlignment() { return this; },
         setWrap() { return this; },
@@ -134,6 +141,31 @@ ok(estado.hojas['General'].valores[0][0] === 'clave' &&
    estado.hojas['General'].valores[0][1] === 'texto' &&
    estado.hojas['General'].valores[0][2] === 'nota', 'encabezados clave/texto/nota');
 
+/* 3b. Ceros a la izquierda (Sheets los convierte en número) */
+console.log('\n3b. Ceros a la izquierda');
+let f = buscarFila('com.1.indice');
+ok(f.valores[f.fila][1] === '01', 'com.1.indice se escribe como "01" (no 1)');
+f = buscarFila('c1.nac.5.tel');
+ok(f.valores[f.fila][1] === '018000919748', 'c1.nac.5.tel conserva el 0 inicial');
+
+// Simula lo que hace Google Sheets al convertir la celda en número
+f = buscarFila('com.1.indice'); f.valores[f.fila][1] = 1;
+f = buscarFila('c1.nac.5.tel'); f.valores[f.fila][1] = 18000919748;
+f = buscarFila('alerta.prot.2.tel'); f.valores[f.fila][1] = 18000918080;
+global.crearHojaTextos();
+f = buscarFila('com.1.indice');
+ok(f.valores[f.fila][1] === '01', 'restaura "01" tras la conversión a número');
+f = buscarFila('c1.nac.5.tel');
+ok(f.valores[f.fila][1] === '018000919748', 'restaura "018000919748"');
+f = buscarFila('alerta.prot.2.tel');
+ok(f.valores[f.fila][1] === '018000918080', 'restaura el teléfono de la pestaña Violencia sexual');
+
+// Una edición real del usuario (sin ceros) no se toca
+f = buscarFila('c1.nac.6.tel'); f.valores[f.fila][1] = '8000918080';
+global.crearHojaTextos();
+f = buscarFila('c1.nac.6.tel');
+ok(f.valores[f.fila][1] === '8000918080', 'una edición del usuario no se sobrescribe');
+
 /* 4. Idempotencia */
 console.log('\n4. Segunda ejecución');
 global.crearHojaTextos();
@@ -157,7 +189,7 @@ ok(/decorativo/.test(buscarFila('decor.vineta').valores[buscarFila('decor.vineta
 
 /* 7. Celda vacía y número */
 console.log('\n7. Ediciones');
-let f = buscarFila('hero.titulo');
+f = buscarFila('hero.titulo');
 f.valores[f.fila][1] = '';
 textos = global.leerTextos();
 ok(!('hero.titulo' in textos), 'celda vacía → la clave no se envía');

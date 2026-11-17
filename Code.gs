@@ -112,6 +112,7 @@ function crearHojaTextos() {
 
   var resumen = [];
   var totalNuevas = 0;
+  var totalReparadas = 0;
 
   for (var i = 0; i < HOJAS.length; i++) {
     var nombre = HOJAS[i];
@@ -123,6 +124,8 @@ function crearHojaTextos() {
       hoja.getRange(1, 1, 1, ENCABEZADOS.length).setFontWeight('bold');
       hoja.setFrozenRows(1);
     }
+
+    darFormatoTexto_(hoja);          // antes de escribir: evita perder los ceros
 
     var existentes = {};
     var datos = hoja.getDataRange().getValues();
@@ -143,6 +146,7 @@ function crearHojaTextos() {
       totalNuevas += nuevas.length;
     }
 
+    totalReparadas += repararCeros_(hoja);        // recupera los ceros ya perdidos
     formatear_(hoja);
 
     var enEsta = Object.keys(POR_DEFECTO).filter(function (k) { return hojaDe_(k) === nombre; }).length;
@@ -151,7 +155,8 @@ function crearHojaTextos() {
 
   var mensaje = 'Pestañas listas:\n' + resumen.join('\n') +
     '\n\nClaves totales: ' + Object.keys(POR_DEFECTO).length +
-    '\nAñadidas ahora: ' + totalNuevas;
+    '\nAñadidas ahora: ' + totalNuevas +
+    (totalReparadas ? '\nCeldas con ceros restauradas: ' + totalReparadas : '');
   Logger.log(mensaje);
   aviso_(mensaje);
 }
@@ -315,6 +320,49 @@ function formatear_(hoja) {
   }
 }
 
+/**
+ * Fuerza las columnas a formato TEXTO para que Google Sheets no convierta
+ * en número lo que empieza por cero ("01", "018000919748"…).
+ * Se aplica a más filas de las usadas, así las ediciones futuras también.
+ */
+function darFormatoTexto_(hoja) {
+  var filas = Math.max(hoja.getLastRow(), 200);
+  hoja.getRange(1, 1, filas, ENCABEZADOS.length).setNumberFormat('@');
+}
+
+/**
+ * Restaura los ceros a la izquierda que Sheets convirtió en número
+ * ("018000919748" → 18000919748). Solo reescribe celdas cuyo contenido
+ * coincide con el texto por defecto sin sus ceros iniciales, así que no
+ * pisa las ediciones que hayas hecho.
+ * Devuelve cuántas celdas reparó.
+ */
+function repararCeros_(hoja) {
+  var datos = hoja.getDataRange().getValues();
+  var filas = [];
+
+  for (var f = 1; f < datos.length; f++) {
+    var clave = texto_(datos[f][0]);
+    if (!clave || !(clave in POR_DEFECTO)) continue;
+
+    var defecto = String(POR_DEFECTO[clave]);
+    if (!/^[0-9\s+()-]+$/.test(defecto)) continue;   // solo números y teléfonos
+
+    var actual = texto_(datos[f][1]);
+    if (actual === defecto) continue;
+    if (sinCerosIzquierda_(defecto) === actual) filas.push([f + 1, defecto]);
+  }
+
+  for (var i = 0; i < filas.length; i++) {
+    hoja.getRange(filas[i][0], 2).setValue(filas[i][1]);
+  }
+  return filas.length;
+}
+
+function sinCerosIzquierda_(texto) {
+  return String(texto).replace(/^0+(?=\d)/, '');
+}
+
 function aviso_(mensaje) {
   try {
     SpreadsheetApp.getUi().alert(mensaje);
@@ -327,7 +375,7 @@ function aviso_(mensaje) {
 /* Regenerar con:  node scripts/sincronizar-defaults.js               */
 
 var POR_DEFECTO = {
-              // --- INICIO POR_DEFECTO (no editar a mano) ---
+                // --- INICIO POR_DEFECTO (no editar a mano) ---
   "pagina.titulo": "Violencia de Género — Infografías de Ayuda, Protección y Denuncia",
   "decor.vineta": "✦",
   "decor.aviso": "⛔",
