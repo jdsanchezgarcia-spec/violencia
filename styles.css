@@ -141,7 +141,7 @@ li { padding:10px 0 10px 34px; position:relative; font-size:.94rem; line-height:
      border-bottom:1.5px dashed #f0e4ec; }
 li:last-child { border-bottom:none; }
 li::before {
-  content:"✦"; position:absolute; left:6px; top:10px; font-size:.9rem;
+  content:var(--decor-vineta, "✦"); position:absolute; left:6px; top:10px; font-size:.9rem;
   width:20px; height:20px; border-radius:50%; display:flex; align-items:center;
   justify-content:center; color:#fff; font-size:.7rem;
 }
@@ -308,7 +308,8 @@ footer .heart { color:#e75fa0; }
 
 .sex-alert-panel {
   position:fixed; z-index:80; top:0; right:0; bottom:0;
-  width:min(430px, 92vw); display:flex; flex-direction:column;
+  /* casi la mitad de la pantalla en escritorio; en móvil manda el 100vw */
+  width:clamp(430px, 48vw, 960px); display:flex; flex-direction:column;
   background:linear-gradient(160deg,#fffaf5,#fdeef7);
   border-left:5px solid #e75fa0;
   box-shadow:-18px 0 50px rgba(60,20,45,.35);
@@ -321,57 +322,62 @@ footer .heart { color:#e75fa0; }
 }
 .sex-alert-head {
   display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
-  padding:24px 22px 18px; color:#fff;
+  padding:28px 26px 22px; color:#fff;
   background:linear-gradient(135deg,#7c1a50 0%,#b03a7d 55%,#e75fa0 100%);
 }
 .sex-alert-kicker {
-  display:inline-block; font-size:.66rem; font-weight:800; letter-spacing:2.2px;
+  display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:2.2px;
   text-transform:uppercase; background:rgba(255,255,255,.22);
   border:1px solid rgba(255,255,255,.4); padding:5px 12px; border-radius:999px;
 }
-.sex-alert-head h2 { font-size:1.6rem; font-weight:900; margin-top:9px; letter-spacing:.5px; }
+.sex-alert-head h2 { font-size:1.85rem; font-weight:900; margin-top:9px; letter-spacing:.5px; }
 .sex-alert-close {
-  flex:0 0 auto; width:38px; height:38px; border-radius:50%; cursor:pointer;
+  flex:0 0 auto; width:42px; height:42px; border-radius:50%; cursor:pointer;
   border:1.5px solid rgba(255,255,255,.5); background:rgba(255,255,255,.18);
-  color:#fff; font-size:1rem; font-weight:700; transition:background .25s ease;
+  color:#fff; font-size:1.1rem; font-weight:700; transition:background .25s ease;
 }
 .sex-alert-close:hover { background:rgba(255,255,255,.36); }
 
-.sex-alert-scroll { flex:1; overflow-y:auto; padding:20px 22px 26px; }
+/* Con el panel ancho, los bloques se reparten en dos columnas */
+.sex-alert-scroll {
+  flex:1; overflow-y:auto; padding:24px 26px 30px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,330px), 1fr));
+  gap:16px; align-content:start;
+}
 
 .sex-block {
-  background:#fff; border-radius:18px; padding:18px 18px 16px; margin-bottom:16px;
+  background:#fff; border-radius:18px; padding:20px 22px 18px; margin-bottom:0;
   box-shadow:0 8px 22px rgba(142,31,90,.12); border-top:5px solid #e75fa0;
 }
 .sex-block--justicia { border-top-color:#4a90c4; }
 .sex-block--proteccion { border-top-color:#a06cd5; }
 .sex-block h3 {
-  font-size:1rem; color:#6d2b57; margin-bottom:8px; display:flex;
+  font-size:1.12rem; color:#6d2b57; margin-bottom:10px; display:flex;
   align-items:center; gap:8px; letter-spacing:.3px;
 }
-.sex-block p { font-size:.88rem; line-height:1.5; color:#7d5f70; margin-bottom:12px; }
+.sex-block p { font-size:.95rem; line-height:1.55; color:#7d5f70; margin-bottom:12px; }
 
 .sex-chips { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
 .sex-chips li {
-  padding:7px 12px; border-radius:999px; font-size:.8rem; font-weight:700;
+  padding:9px 14px; border-radius:999px; font-size:.88rem; font-weight:700;
   background:linear-gradient(135deg,#fde3ef,#fbd0e4); color:#8e1f5a;
   border:1.5px solid #f3b1d1;
 }
 .sex-chips li::before { content:none; }
-.sex-chips small { font-weight:600; font-size:.7rem; opacity:.8; }
+.sex-chips small { font-weight:600; font-size:.75rem; opacity:.8; }
 
 .sex-note {
-  margin-top:14px; padding:12px 14px; border-radius:12px; font-size:.85rem;
+  margin-top:14px; padding:14px 16px; border-radius:12px; font-size:.9rem;
   background:linear-gradient(135deg,#fff4dd,#ffe8c2); border-left:5px solid #e8a020;
   color:#7a4c10;
 }
 .sex-note ul { list-style:none; margin-top:6px; }
 .sex-note li { padding:5px 0 5px 24px; position:relative; border:none; font-weight:700; }
-.sex-note li::before { content:"⛔"; position:absolute; left:0; top:5px;
+.sex-note li::before { content:var(--decor-aviso, "⛔"); position:absolute; left:0; top:5px;
   background:none; color:#e8a020; font-size:.85rem; width:auto; height:auto; }
 
 .sex-line {
-  display:flex; align-items:center; gap:14px; padding:11px 13px; margin-bottom:9px;
+  display:flex; align-items:center; gap:14px; padding:13px 16px; margin-bottom:9px;
   border-radius:13px; text-decoration:none;
   background:linear-gradient(135deg,#f4f9fd,#e6f1fa);
   border:1.5px solid #cbe2f5; transition:transform .2s ease, border-color .2s ease;
@@ -379,11 +385,12 @@ footer .heart { color:#e75fa0; }
 .sex-line:last-child { margin-bottom:0; }
 .sex-line:hover { transform:translateX(4px); border-color:#4a90c4; }
 .sex-line-num {
-  min-width:120px; font-weight:900; font-size:1rem; color:#1f4e79; letter-spacing:.4px;
+  min-width:130px; font-weight:900; font-size:1.1rem; color:#1f4e79; letter-spacing:.4px;
 }
-.sex-line-label { font-size:.8rem; color:#6a8296; line-height:1.35; }
+.sex-line-label { font-size:.88rem; color:#6a8296; line-height:1.35; }
 .sex-foot {
-  text-align:center; font-size:.8rem; color:#8a6a7c; padding:4px 6px 0;
+  grid-column:1/-1; margin:0;
+  text-align:center; font-size:.88rem; color:#8a6a7c; padding:6px 6px 0;
 }
 
 body.sex-alert-open { overflow:hidden; }
