@@ -141,7 +141,7 @@ li { padding:10px 0 10px 34px; position:relative; font-size:.94rem; line-height:
      border-bottom:1.5px dashed #f0e4ec; }
 li:last-child { border-bottom:none; }
 li::before {
-  content:var(--decor-vineta, "✦"); position:absolute; left:6px; top:10px; font-size:.9rem;
+  content:"✦"; position:absolute; left:6px; top:10px; font-size:.9rem;
   width:20px; height:20px; border-radius:50%; display:flex; align-items:center;
   justify-content:center; color:#fff; font-size:.7rem;
 }
@@ -373,7 +373,7 @@ footer .heart { color:#e75fa0; }
 }
 .sex-note ul { list-style:none; margin-top:6px; }
 .sex-note li { padding:5px 0 5px 24px; position:relative; border:none; font-weight:700; }
-.sex-note li::before { content:var(--decor-aviso, "⛔"); position:absolute; left:0; top:5px;
+.sex-note li::before { content:"⛔"; position:absolute; left:0; top:5px;
   background:none; color:#e8a020; font-size:.85rem; width:auto; height:auto; }
 
 .sex-line {
